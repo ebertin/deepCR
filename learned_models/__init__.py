@@ -10,7 +10,8 @@ mask_dict = {'ACS-WFC': [UNet2SigmoidBatchNorm, (1, 1, 32), 1],
              'WFC3-UVIS': [UNet2Sigmoid, (1, 1, 32), 1]
 }
 
-inpaint_dict = {'ACS-WFC-F606W-2-32': [UNet2BatchNorm, (2, 1, 32)]
+inpaint_dict = {'ACS-WFC-F606W-2-32': [UNet2BatchNorm, (2, 1, 32)],
+             'ACS-WFC-F606W-3-32': [UNet2BatchNorm, (2, 1, 32)]
 }
 
 default_model_path = path.join(path.dirname(__file__))
