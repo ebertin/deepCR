@@ -62,9 +62,9 @@ class deepCR():
             self.maskNet = wrapper(UNet2Sigmoid(1, 1, hidden))
         self.maskNet.type(self.dtype)
         if device != 'GPU':
-            self.maskNet.load_state_dict(torch.load(mask_path, map_location='cpu'))
+            self.maskNet.load_state_dict(torch.load(mask_path, map_location='cpu'), strict=False)
         else:
-            self.maskNet.load_state_dict(torch.load(mask_path))
+            self.maskNet.load_state_dict(torch.load(mask_path), strict=False)
         self.maskNet.eval()
         for p in self.maskNet.parameters():
             p.required_grad = False
@@ -73,9 +73,9 @@ class deepCR():
             inpaint_path = default_model_path + '/inpaint/' + inpaint + '.pth'
             self.inpaintNet = wrapper(inpaint_dict[inpaint][0](*inpaint_dict[inpaint][1])).type(self.dtype)
             if device != 'GPU':
-                self.inpaintNet.load_state_dict(torch.load(inpaint_path, map_location='cpu'))
+                self.inpaintNet.load_state_dict(torch.load(inpaint_path, map_location='cpu'), strict=False)
             else:
-                self.inpaintNet.load_state_dict(torch.load(inpaint_path))
+                self.inpaintNet.load_state_dict(torch.load(inpaint_path), strict=False)
             self.inpaintNet.eval()
             for p in self.inpaintNet.parameters():
                 p.required_grad = False
